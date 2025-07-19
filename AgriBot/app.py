@@ -15,7 +15,8 @@ app = Flask(__name__)
 CORS(app)
 
 # Initialize Cohere client
-cohere_api_key = "hoOvuBLBb3t0TRvqFqqd2zV3lkYmkTLctnoc6ZRb"
+cohere_api_key = os.getenv("COHERE_API_KEY")
+
 print(f"API Key found: {cohere_api_key[:10]}...")  
 if cohere_api_key and cohere_api_key.strip():
     try:
