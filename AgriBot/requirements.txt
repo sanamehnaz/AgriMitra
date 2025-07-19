@@ -1,0 +1,10 @@
+flask
+flask-cors
+scikit-learn
+tensorflow
+deep-translator
+pandas
+numpy
+opencv-python 
+Pillow
+cohere

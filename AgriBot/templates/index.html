@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriMitra | అగ్రిమిత్ర</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo-title">
+            <img src="/static/logo.png" alt="AgriMitra Logo" class="logo" onerror="this.style.display='none'">
+            <span class="title-en">AgriMitra</span>
+            <span class="title-te">| అగ్రిమిత్ర</span>
+        </div>
+        <select id="language" class="lang-select">
+            <option value="en">English</option>
+            <option value="te">తెలుగు</option>
+            <option value="hi">हिन्दी</option>
+        </select>
+    </header>
+    <main class="main-content">
+        <section class="hero">
+            <div class="hero-bg"></div>
+            <div class="hero-content">
+                <h1 id="hero-heading">Your Smart Farming Assistant</h1>
+                <button id="start-chat" class="cta-btn">Start Chat</button>
+            </div>
+        </section>
+        <section class="features">
+            <div class="feature-card" id="open-crop-modal" tabindex="0">
+                <div class="icon">🌱</div>
+                <div class="feature-title" id="feature-crop-title">Crop Recommendation</div>
+                <div class="feature-desc" id="feature-crop-desc">Get the best crops for your climate and soil.</div>
+            </div>
+            <div class="feature-card" id="open-disease-modal" tabindex="0">
+                <div class="icon">📸</div>
+                <div class="feature-title" id="feature-disease-title">Disease Detection</div>
+                <div class="feature-desc" id="feature-disease-desc">Upload a photo to identify plant diseases.</div>
+            </div>
+            <div class="feature-card" id="open-pesticide-modal" tabindex="0">
+                <div class="icon">🧪</div>
+                <div class="feature-title" id="feature-pesticide-title">Pesticide Advice</div>
+                <div class="feature-desc" id="feature-pesticide-desc">Get safe and effective pesticide suggestions.</div>
+            </div>
+        </section>
+    </main>
+    <!-- Crop Recommendation Modal -->
+    <div id="crop-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" id="close-crop-modal">&times;</span>
+            <h2 id="crop-modal-title">Crop Recommendation</h2>
+            <form id="crop-form">
+                <label for="N">Nitrogen (N):</label>
+                <input type="number" id="N" name="N" required><br>
+                <label for="P">Phosphorus (P):</label>
+                <input type="number" id="P" name="P" required><br>
+                <label for="K">Potassium (K):</label>
+                <input type="number" id="K" name="K" required><br>
+                <label for="temperature">Temperature (°C):</label>
+                <input type="number" step="any" id="temperature" name="temperature" required><br>
+                <label for="humidity">Humidity (%):</label>
+                <input type="number" step="any" id="humidity" name="humidity" required><br>
+                <label for="ph">pH:</label>
+                <input type="number" step="any" id="ph" name="ph" required><br>
+                <label for="rainfall">Rainfall (mm):</label>
+                <input type="number" step="any" id="rainfall" name="rainfall" required><br>
+                <button type="submit" class="send-btn" id="crop-submit-btn">Get Recommendation</button>
+            </form>
+            <div id="crop-result" class="crop-result"></div>
+        </div>
+    </div>
+    <!-- Disease Detection Modal -->
+    <div id="disease-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" id="close-disease-modal">&times;</span>
+            <h2 id="disease-modal-title">Disease Detection</h2>
+            <form id="disease-form">
+                <label for="disease-image">Upload Leaf Image:</label>
+                <input type="file" id="disease-image" name="disease-image" accept="image/*" required><br>
+                <button type="submit" class="send-btn" id="disease-submit-btn">Detect Disease</button>
+            </form>
+            <div id="disease-result" class="crop-result"></div>
+        </div>
+    </div>
+    <!-- Pesticide Advice Modal -->
+    <div id="pesticide-modal" class="modal" style="display:none;">
+      <div class="modal-content">
+        <span class="close" id="close-pesticide-modal">&times;</span>
+        <h2>Pesticide Advice</h2>
+        <form id="pesticide-form">
+          <label for="disease-select">Select Disease:</label>
+          <select id="disease-select" required>
+            <option value="">--Select--</option>
+            <option value="Apple___Apple_scab">Apple Scab</option>
+            <option value="Apple___Black_rot">Apple Black Rot</option>
+            <option value="Apple___Cedar_apple_rust">Apple Cedar Apple Rust</option>
+            <option value="Apple___healthy">Apple Healthy</option>
+            <option value="Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot">Corn Cercospora Leaf Spot / Gray Leaf Spot</option>
+            <option value="Corn_(maize)___Common_rust_">Corn Common Rust</option>
+            <option value="Corn_(maize)___Northern_Leaf_Blight">Corn Northern Leaf Blight</option>
+            <option value="Corn_(maize)___healthy">Corn Healthy</option>
+            <option value="Grape___Black_rot">Grape Black Rot</option>
+            <option value="Grape___Esca_(Black_Measles)">Grape Esca (Black Measles)</option>
+            <option value="Grape___Leaf_blight_(Isariopsis_Leaf_Spot)">Grape Leaf Blight (Isariopsis Leaf Spot)</option>
+            <option value="Grape___healthy">Grape Healthy</option>
+            <option value="Pepper,_bell___Bacterial_spot">Pepper Bell Bacterial Spot</option>
+            <option value="Pepper,_bell___healthy">Pepper Bell Healthy</option>
+            <option value="Potato___Early_blight">Potato Early Blight</option>
+            <option value="Potato___Late_blight">Potato Late Blight</option>
+            <option value="Potato___healthy">Potato Healthy</option>
+          </select>
+          <button type="submit" class="send-btn">Get Advice</button>
+        </form>
+        <div id="pesticide-result" class="crop-result"></div>
+      </div>
+    </div>
+    <main class="chat-section" id="chat-section" style="display:none;">
+        <div class="chat-header">
+            <div class="chat-title">AgriMitra Assistant</div>
+            <button class="back-btn" onclick="goBack()">← Back</button>
+        </div>
+        <div id="chatbox" class="chatbox">
+            <div class="welcome-message">
+                <h3>🌱 Welcome to AgriMitra!</h3>
+                <p>I'm your smart farming assistant. Ask me anything about crops, diseases, pesticides, or farming techniques. I'm here to help you with all your agricultural needs!</p>
+            </div>
+        </div>
+        <form id="chat-form" class="chat-form">
+            <input type="text" id="user-input" placeholder="Ask me about farming, crops, or agricultural advice..." autocomplete="off">
+            <label for="image-input" class="image-upload-btn" title="Upload image for disease detection">
+                📷
+            </label>
+            <input type="file" id="image-input" accept="image/*">
+            <button type="submit" class="send-btn">➤</button>
+        </form>
+    </main>
+    <footer class="footer">
+        <span id="footer-msg">Made with ❤️ for farmers | రైతుల కోసం ప్రేమతో</span>
+    </footer>
+    <script src="/static/script.js?v=1"></script>
+</body>
+</html>
